@@ -4,20 +4,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.toannvs.laptopshop.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
 public class UserController {
-    final private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
     
     @GetMapping("/")
-    public String getHomePage(@RequestParam String username) {
-        return userService.getUser(username);
+    public String getHomePage() {
+        return "Hello, this is homepage";
+    }
+    @GetMapping("/user")
+    public ModelAndView getUser() {
+        return new ModelAndView("user");
     }
     
 }
