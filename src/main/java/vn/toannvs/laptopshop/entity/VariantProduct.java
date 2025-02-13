@@ -15,4 +15,8 @@ public class VariantProduct {
     private String color;
     private double price;
     private int stockQuantity;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 }

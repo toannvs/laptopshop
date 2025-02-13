@@ -14,4 +14,7 @@ public class Brand {
     private Long id;
     private String name;
     private String description;
+
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 }
