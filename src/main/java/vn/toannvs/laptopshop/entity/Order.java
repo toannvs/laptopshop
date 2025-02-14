@@ -18,7 +18,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User user; // Người đặt hàng
 
     private LocalDateTime orderDate;
 
@@ -28,5 +28,15 @@ public class Order {
 
     private double totalPrice;
 
-    private String deliveryAddress;
+    @Column(nullable = false)
+    private String recipientName; // Họ và tên người nhận
+
+    @Column(nullable = false)
+    private String recipientAddress; // Địa chỉ của người nhận
+
+    @Column(nullable = false)
+    private String recipientPhone; // Số điện thoại người nhận
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderDetail> orderDetails;
 }
